@@ -1,0 +1,20 @@
+services:
+  bk:
+    container_name: bk-test
+    image: node
+    volumes:
+      - .:/api
+    working_dir: /api
+    user: node
+    command: npm run dev
+    restart: always
+    ports:
+      - "8010:8000"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: mysql_default
